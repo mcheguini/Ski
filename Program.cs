@@ -6,7 +6,8 @@ using System.IO;
 namespace Ski {
     class Program {
         //Global Vars
-        private const int maxElevation = 1500; // limit value
+        static string fileName = "4x4.txt"; // File Name tuning option
+        private const int maxElevation = 1500; // limit value tuning option
         static int m = 0, n = 0; // matrix dimension
         private static int dS = 0; // Aux var to compute difference in Slope find maximum slope ()
         private static int len = 0, lenAux = 0; // to find maximum length
@@ -102,7 +103,7 @@ namespace Ski {
         // Desc: Read raw data from the text file and set the map matrix
         // OUTPUT: Map(Matrix)
         private static int[, ] readData () {
-            string fileName = "4x4.txt"; // File Name
+            
             string path = System.IO.Directory.GetCurrentDirectory () + "/" + fileName; // Full path to the File Name I think In windows / will change to \
             //Console.WriteLine(path); // Debug purpose
             String input = File.ReadAllText (path); // Read all the Data from the text File save it into a 
