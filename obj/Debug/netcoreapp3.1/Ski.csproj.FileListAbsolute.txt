@@ -1,0 +1,12 @@
+/Users/m/Documents/CSharp/Ski/bin/Debug/netcoreapp3.1/Ski.deps.json
+/Users/m/Documents/CSharp/Ski/bin/Debug/netcoreapp3.1/Ski.runtimeconfig.json
+/Users/m/Documents/CSharp/Ski/bin/Debug/netcoreapp3.1/Ski.runtimeconfig.dev.json
+/Users/m/Documents/CSharp/Ski/bin/Debug/netcoreapp3.1/Ski.dll
+/Users/m/Documents/CSharp/Ski/bin/Debug/netcoreapp3.1/Ski.pdb
+/Users/m/Documents/CSharp/Ski/obj/Debug/netcoreapp3.1/Ski.csprojAssemblyReference.cache
+/Users/m/Documents/CSharp/Ski/obj/Debug/netcoreapp3.1/Ski.AssemblyInfoInputs.cache
+/Users/m/Documents/CSharp/Ski/obj/Debug/netcoreapp3.1/Ski.AssemblyInfo.cs
+/Users/m/Documents/CSharp/Ski/obj/Debug/netcoreapp3.1/Ski.csproj.CoreCompileInputs.cache
+/Users/m/Documents/CSharp/Ski/obj/Debug/netcoreapp3.1/Ski.dll
+/Users/m/Documents/CSharp/Ski/obj/Debug/netcoreapp3.1/Ski.pdb
+/Users/m/Documents/CSharp/Ski/obj/Debug/netcoreapp3.1/Ski.genruntimeconfig.cache
