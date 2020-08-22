@@ -20,7 +20,70 @@ namespace Ski {
             bool[, ] binMap = logicMapMaker (map, m, n);
             Console.WriteLine ("Logic Map:");
             mapPrint (binMap, m, n);
-
+            for (int i = 0; i < m; ++i) { // Traverse all elements in the matrix Rows
+                for (int j = 0; j < n; ++j) { // Columns
+                    findRoute (i, j, map[i, j], binMap, map); // Resursion for each element in the matrix
+                }
+            }
+            int[] result = resultL.ToArray ();
+            Console.WriteLine (String.Join (",", result));
+            Console.WriteLine ("Max length: " + (resultL.Count+1));
+            Console.WriteLine ("Max length 2nd way: " + lenAux);
+            Console.WriteLine ("Slope: " + dS);
+        }
+        private static void findRoute (int i, int j, int ele, bool[, ] logicMap, int[, ] map) {
+            len++; // count length
+            int c = map[i, j]; // aux current processing elevation
+            auxL.Add (c); // save current processing data into the list
+            if (i > 0) { // Check where I want to go its good Area NORTH BOUNDRY
+                if ((c > map[i - 1, j]) && logicMap[i - 1, j]) { // if the northen element is less and its true
+                    findRoute (i - 1, j, ele, logicMap, map);
+                    // Console.Write(" N ");
+                    north = true;
+                } else north = false;
+            } else north = false;
+            if (j < (n - 1)) { // EAST BOUNDRY
+                if ((c > map[i, j + 1]) && logicMap[i, j + 1]) { // Check the condition and logic Map
+                    // Console.Write(" E ");
+                    findRoute (i, j + 1, ele, logicMap, map);
+                    east = true;
+                } else east = false;
+            } else east = false;
+            if (i < (m - 1)) { // SOUTH BOUNDRY
+                if ((c > map[i + 1, j]) && logicMap[i + 1, j]) {
+                    // Console.Write(" S ");
+                    findRoute (i + 1, j, ele, logicMap, map);
+                    south = true;
+                } else south = false;
+            } else south = false;
+            if (j > 0) { // WEST BOUNDRY
+                if ((c > map[i, j - 1]) && logicMap[i, j - 1]) {
+                    // Console.Write(" W ");
+                    findRoute (i, j - 1, ele, logicMap, map);
+                    west = true;
+                } else west = false;
+            } else west = false;
+            if (auxL.Count > 0) { // If there is element in list list is not empty
+                if (resultL.Count < auxL.Count) { // Find the Maximum route Path OJO its workind only if there is no NODE
+                    resultL.Clear ();
+                    auxL.ForEach ((item) => { // make a copy
+                        resultL.Add (item); // this array will carry the element elevation of the longest path
+                    });
+                }
+                int[] array = auxL.ToArray ();
+                //Console.WriteLine (String.Join (",", array) + "\t L: " + auxL.Count); // Debug
+                //auxL.Clear (); //??????
+            }
+            if (!north && !east && !south && !west) auxL.Clear (); // No where to go!!!!!!
+            // Second method to find Max Length and Slope (its more practical)
+            if (len > lenAux) { // First: Maximize the lengt
+                lenAux = len; // find Maximum length
+                dS = ele - map[i, j]; //find the slope
+            }
+            if ((ele - c) > dS) { // Second Maximize the slope
+                dS = (ele - c); // find Maximum Slope
+            }
+            len--; // compensate
         }
 
         // Desc: split string into the array
