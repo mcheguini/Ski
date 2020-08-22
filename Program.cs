@@ -6,11 +6,11 @@ using System.IO;
 namespace Ski {
     class Program {
         //Global Vars
-        private const int maxElevation = 10;
-        private const int m = 4,
-            n = 4;
-        static int[, ] map = new int[m, n] { { 4, 8, 7, 3 }, { 2, 5, 9, 3 }, { 6, 3, 2, 5 }, { 4, 4, 1, 6 }
-        };
+        private const int maxElevation = 1500; // limit value
+        // private const int m = 4,
+        //     n = 4;
+        // static int[, ] map = new int[m, n] { { 4, 8, 7, 3 }, { 2, 5, 9, 3 }, { 6, 3, 2, 5 }, { 4, 4, 1, 6 }
+        // };
         private static int dS = 0; // Aux var to compute difference in Slope find maximum slope ()
         private static int len = 0, lenAux = 0; // to find maximum length
         private static bool north = false, east = false, south = false, west = false; // boolean to check if we move to any direction
@@ -21,33 +21,31 @@ namespace Ski {
             string path = System.IO.Directory.GetCurrentDirectory () + "/" + fileName; // Full path to the File Name I think In windows / will change to \
             //Console.WriteLine(path); // Debug purpose
             String input = File.ReadAllText (path); // Read all the Data from the text File save it into a 
-            String[] array = input.Split ('\n');
-            List<int> auxL = new List<int> ();
-            int[] dimention = tointarray (array[0], ' ');
-            int m = dimention[0], n = dimention[1];
-            Console.WriteLine ("m: " + m + " n: " + n);
-            for (int i = 1; i < array.GetLength (0); i++) {
-                //Console.WriteLine(array[i]);
-                //string[] row = array[i].Split(' ');
-                // List<int> numberList = array[i].SplitToIntList(' ');
-                int[] ia = tointarray (array[i], ' ');
-                for (int j = 0; j < ia.Length; j++) {
-                    Console.Write (ia[j] + "\t");
+            String[] array = input.Split ('\n'); // Read the whole text into the string 
+            //List<int> auxL = new List<int> (); // 
+            int[] dimention = stringToIntArray (array[0], ' '); // Read Matrix dimension form the first Row
+            int m = dimention[0], n = dimention[1]; // Store the dimention into the variable 
+int[,] map = new int[m,n]; // create empty map matrix
+
+
+            for (int i = 1; i < array.GetLength (0); i++) { // Read raw data pass to the matrix 
+                int[] row = stringToIntArray (array[i], ' ');
+                for (int j = 0; j < row.Length; j++) {
+                    map[i-1,j] = row[j];
                 }
-                Console.WriteLine ("");
             }
+            Console.WriteLine("")
+            mapPrint(map,m,n); // debug
         }
-        private static int[] tointarray (string value, char sep) {
-            string[] sa = value.Split (sep);
-            int[] ia = new int[sa.Length];
-            for (int i = 0; i < ia.Length; ++i) {
+        private static int[] stringToIntArray (string str, char sep) {
+            string[] aux = str.Split(sep);
+            int[] result = new int[aux.Length]; // create an aux Int Array same length
+            for (int i = 0; i < result.Length; ++i) {
                 int j;
-                string s = sa[i];
-                if (int.TryParse (s, out j)) {
-                    ia[i] = j;
-                }
+                string s = aux[i];
+                if (int.TryParse (s, out j)) result[i] = j;
             }
-            return ia;
+            return result;
         }
 
         // Desc: Construct the T/F based on the original matrix and range [0-1500]
