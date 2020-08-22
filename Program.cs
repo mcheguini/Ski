@@ -15,10 +15,10 @@ namespace Ski {
         private static List<int> resultL = new List<int> (); //hold the result of the search (Longest path)
         static void Main (string[] args) {
             int[, ] map = readData (); // Read matrix data form the text file
-            Console.WriteLine ("Original Map:");
-            mapPrint (map, m, n); // debug
+            //Console.WriteLine ("Original Map:"); // debug
+            //mapPrint (map, m, n); // debug
             bool[, ] binMap = logicMapMaker (map, m, n);
-            Console.WriteLine ("Logic Map:");
+            //Console.WriteLine ("Logic Map:");
             mapPrint (binMap, m, n);
             for (int i = 0; i < m; ++i) { // Traverse all elements in the matrix Rows
                 for (int j = 0; j < n; ++j) { // Columns
