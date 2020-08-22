@@ -7,18 +7,22 @@ namespace Ski {
     class Program {
         //Global Vars
         private const int maxElevation = 1500; // limit value
-        static int m=0, n=0; // matrix dimension
+        static int m = 0, n = 0; // matrix dimension
         private static int dS = 0; // Aux var to compute difference in Slope find maximum slope ()
         private static int len = 0, lenAux = 0; // to find maximum length
         private static bool north = false, east = false, south = false, west = false; // boolean to check if we move to any direction
         private static List<int> auxL = new List<int> (); // temp list to hold the search path results
         private static List<int> resultL = new List<int> (); //hold the result of the search (Longest path)
         static void Main (string[] args) {
-            int[,] map = readData(); // Read matrix data form the text file
+            int[, ] map = readData (); // Read matrix data form the text file
             Console.WriteLine ("Original Map:");
             mapPrint (map, m, n); // debug
+            bool[, ] binMap = logicMapMaker (map, m, n);
+            Console.WriteLine ("Logic Map:");
+            mapPrint (binMap, m, n);
 
         }
+
         // Desc: split string into the array
         // INPUT: string and sep character
         // OUTPUT: int array
@@ -32,9 +36,9 @@ namespace Ski {
             }
             return result;
         }
-// Desc: Read raw data from the text file and set the map matrix
-// OUTPUT: Map(Matrix)
-private static int[,] readData (){
+        // Desc: Read raw data from the text file and set the map matrix
+        // OUTPUT: Map(Matrix)
+        private static int[, ] readData () {
             string fileName = "4x4.txt"; // File Name
             string path = System.IO.Directory.GetCurrentDirectory () + "/" + fileName; // Full path to the File Name I think In windows / will change to \
             //Console.WriteLine(path); // Debug purpose
@@ -52,7 +56,7 @@ private static int[,] readData (){
                 }
             }
             return map;
-}
+        }
         // Desc: Construct the T/F based on the original matrix and range [0-1500]
         // INPUT: Original Matrix
         // Output: LogicMap 
